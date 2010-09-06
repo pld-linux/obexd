@@ -1,26 +1,25 @@
 Summary:	D-Bus service providing high-level OBEX client and server side functionality
-Summary(pl.UTF-8):	Usługa D-Bus dostarczająca wysokopoziomową funkcjonalność klientą i serwera OBEX
+Summary(pl.UTF-8):	Usługa D-Bus dostarczająca wysokopoziomową funkcjonalność klienta i serwera OBEX
 Name:		obexd
-Version:	0.29
+Version:	0.32
 Release:	1
 License:	GPL v2+
-Group:		X11/Applications
-Source0:	http://www.kernel.org/pub/linux/bluetooth/%{name}-%{version}.tar.gz
-# Source0-md5:	d6e4884e7ab11b1f048ba32bc963fa80
+Group:		Applications/Communication
+Source0:	http://www.kernel.org/pub/linux/bluetooth/%{name}-%{version}.tar.bz2
+# Source0-md5:	01de97dc3bdd1f565d86daa5956919fe
 URL:		http://www.bluez.org/
-BuildRequires:	GConf2-devel >= 2.6
-BuildRequires:	autoconf >= 2.52
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 4.2
-BuildRequires:	dbus-glib-devel >= 0.70
-BuildRequires:	glib2-devel >= 1:2.10.0
-BuildRequires:	gtk+2-devel >= 1:2.0
+BuildRequires:	dbus-devel >= 1.0
+BuildRequires:	glib2-devel >= 1:2.16.0
 BuildRequires:	libical-devel
-BuildRequires:	openobex-devel >= 1.3
+BuildRequires:	libtool
+BuildRequires:	openobex-devel >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
-Requires(post,preun):	GConf2 >= 2.6
-Requires:	dbus-glib >= 0.60
+Requires:	dbus >= 1.0
+Requires:	glib2 >= 1:2.16
 Provides:	dbus(org.openobex.client)
 Obsoletes:	obex-data-server
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -29,20 +28,23 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 obexd is D-Bus service providing high-level OBEX client and server
 side functionality.
 
+%description -l pl.UTF-8
+obexd to usługa D-Bus dostarczająca wysokopoziomową funkcjonalność
+klienta i serwera OBEX.
+
 %prep
 %setup -q
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__automake}
 %{__autoheader}
 %{__autoconf}
 %configure \
-	--enable-bip=gdk-pixbuf \
-	--enable-shared \
+	--disable-silent-rules \
 	--enable-usb \
 	--enable-nokia-backup \
-	--enable-debug \
 	--with-gnu-ld
 %{__make}
 

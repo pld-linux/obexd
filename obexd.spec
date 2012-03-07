@@ -1,16 +1,16 @@
 Summary:	D-Bus service providing high-level OBEX client and server side functionality
 Summary(pl.UTF-8):	Usługa D-Bus dostarczająca wysokopoziomową funkcjonalność klienta i serwera OBEX
 Name:		obexd
-Version:	0.44
+Version:	0.45
 Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://www.kernel.org/pub/linux/bluetooth/%{name}-%{version}.tar.xz
-# Source0-md5:	5f348dd8684a817c75dd6b0dce75a57b
+# Source0-md5:	22baef5ff0b91ed7700dbddca8f0c0b0
 URL:		http://www.bluez.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
-BuildRequires:	bluez-libs-devel >= 4.2
+BuildRequires:	bluez-libs-devel >= 4.99
 BuildRequires:	dbus-devel >= 1.0
 BuildRequires:	glib2-devel >= 1:2.16
 BuildRequires:	libical-devel
@@ -20,6 +20,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires:	bluez-libs >= 4.99
 Requires:	dbus >= 1.0
 Requires:	glib2 >= 1:2.16
 Provides:	dbus(org.openobex.client)
